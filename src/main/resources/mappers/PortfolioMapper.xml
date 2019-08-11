@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.funfund.dao.PortfolioMapper" >
+  <resultMap id="BaseResultMap" type="com.funfund.pojo.Portfolio" >
+    <constructor >
+      <arg column="portfolio_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="date" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="manager" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.funfund.pojo.Portfolio" >
+    insert into portfolio (portfolio_name, date, manager
+      )
+    values (#{portfolioName,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, #{manager,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.funfund.pojo.Portfolio" >
+    insert into portfolio
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="portfolioName != null" >
+        portfolio_name,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="manager != null" >
+        manager,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="portfolioName != null" >
+        #{portfolioName,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="manager != null" >
+        #{manager,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.funfund.dao.PositionMapper" >
+  <resultMap id="BaseResultMap" type="com.funfund.pojo.Position" >
+    <constructor >
+      <arg column="portfolio_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="security_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="date" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="open" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="high" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="low" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="close" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="type" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.funfund.pojo.Position" >
+    insert into position (portfolio_name, security_name, date, 
+      open, high, low, close, 
+      type)
+    values (#{portfolioName,jdbcType=VARCHAR}, #{securityName,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, 
+      #{open,jdbcType=DOUBLE}, #{high,jdbcType=DOUBLE}, #{low,jdbcType=DOUBLE}, #{close,jdbcType=DOUBLE}, 
+      #{type,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.funfund.pojo.Position" >
+    insert into position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="portfolioName != null" >
+        portfolio_name,
+      </if>
+      <if test="securityName != null" >
+        security_name,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="open != null" >
+        open,
+      </if>
+      <if test="high != null" >
+        high,
+      </if>
+      <if test="low != null" >
+        low,
+      </if>
+      <if test="close != null" >
+        close,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="portfolioName != null" >
+        #{portfolioName,jdbcType=VARCHAR},
+      </if>
+      <if test="securityName != null" >
+        #{securityName,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="open != null" >
+        #{open,jdbcType=DOUBLE},
+      </if>
+      <if test="high != null" >
+        #{high,jdbcType=DOUBLE},
+      </if>
+      <if test="low != null" >
+        #{low,jdbcType=DOUBLE},
+      </if>
+      <if test="close != null" >
+        #{close,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
